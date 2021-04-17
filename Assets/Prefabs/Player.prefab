@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6463197133203135192}
   - component: {fileID: 6463197133203135199}
   - component: {fileID: 6463197133203135198}
+  - component: {fileID: 6704162985074622537}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,6 +86,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &6463197133203135192
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -138,6 +141,53 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &6704162985074622537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463197133203135197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3628f6f42dd0ca941954f559bf26eb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tintObj: {fileID: 0}
+  m_tintCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.008087158
+      value: 0
+      inSlope: 2.0328805
+      outSlope: 2.0328805
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0.028311547
+      outSlope: -0.028311547
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.105667554
+      outWeight: 0.28399393
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_curveDuration: 4
 --- !u!1 &6463197133224805854
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +202,7 @@ GameObject:
   - component: {fileID: 7570492211082528494}
   - component: {fileID: 6463197133224805849}
   - component: {fileID: 6463197133224805848}
+  - component: {fileID: 4365673273590749107}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -315,6 +366,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 500
   playerTransform: {fileID: 6463197133203135195}
+--- !u!114 &4365673273590749107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463197133224805854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c7a87fa43ff874c9fc2f1c92fd8072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  targetScreenSize:
+    width: 256
+    height: 144
+  screenScaleFactor: 5
+  display: {fileID: 0}
+  pixelated: 1
 --- !u!1 &6463197134922819970
 GameObject:
   m_ObjectHideFlags: 0
