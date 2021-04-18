@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Projectile_Behaviour : MonoBehaviour {
 
     Vector3 Direction;
@@ -18,14 +19,15 @@ public class Projectile_Behaviour : MonoBehaviour {
 
     void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag == "Player") {
-            Destroy(gameObject); // add health stuff here
+            Destroy(gameObject);
+            col.gameObject.GetComponent<Player_Movement>().GiveDamage(5f);
+
         } else if (col.gameObject.tag == "Defense") {
             Destroy(gameObject);
         } else {
             GameObject player = GameObject.Find("Player");
             Vector3 direction = player.transform.position - transform.position;
-
-            Direction = direction.normalized;
+            Direction = direction / direction.magnitude;
         }
     }
 }

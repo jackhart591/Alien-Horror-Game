@@ -17,6 +17,8 @@ public class Player_Movement : MonoBehaviour {
     public Transform groundCheck;
     public LayerMask groundMask;
 
+    private float health = 15;
+
     private float groundDistance = 0.4f;
 
     private CharacterController controller;
@@ -58,5 +60,22 @@ public class Player_Movement : MonoBehaviour {
 
     void OnGUI() {
          GUILayout.Label("Grounded: " + isGrounded);
+         GUILayout.Label("Health: " + health);
+    }
+
+    public float GetHealth() {
+        return health;
+    }
+
+    public void GiveDamage(float damage) {
+        health -= damage;
+
+        CheckDead();
+    }
+
+    public void CheckDead() {
+        if (health <= 0) {
+            // gameover conditions
+        }
     }
 }
