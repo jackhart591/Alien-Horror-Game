@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -16,8 +17,13 @@ public class Player_Movement : MonoBehaviour {
     [Header("Components")]
     public Transform groundCheck;
     public LayerMask groundMask;
+    
+    [Header("Other")]
+    public GameObject master;
+    public AudioClip backHit;
+    public AudioClip hitHit;
 
-    private float health = 15;
+    private int health = 3;
 
     private float groundDistance = 0.4f;
 
@@ -58,24 +64,33 @@ public class Player_Movement : MonoBehaviour {
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void OnGUI() {
-         GUILayout.Label("Grounded: " + isGrounded);
-         GUILayout.Label("Health: " + health);
-    }
-
-    public float GetHealth() {
+    public int GetHealth() {
         return health;
     }
 
-    public void GiveDamage(float damage) {
+    public void GiveDamage(int damage) {
         health -= damage;
+        GetComponent<AudioSource>().PlayOneShot(hitHit);
 
         CheckDead();
     }
 
     public void CheckDead() {
         if (health <= 0) {
-            // gameover conditions
+            if (PlayerPrefs.HasKey("HighScore")) {
+                if (PlayerPrefs.GetFloat("HighScore") < master.GetComponent<Master_Script>().timer) {
+                    PlayerPrefs.SetFloat("HighScore", master.GetComponent<Master_Script>().timer);
+                    print("Saved");
+                }
+            } else {
+                PlayerPrefs.SetFloat("HighScore", master.GetComponent<Master_Script>().timer);
+                print("Saved");
+            }
+            SceneManager.LoadScene(2);
         }
+    }
+
+    public void PlayPing() {
+        GetComponent<AudioSource>().PlayOneShot(backHit);
     }
 }

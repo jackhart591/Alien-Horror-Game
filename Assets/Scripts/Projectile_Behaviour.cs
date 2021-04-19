@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile_Behaviour : MonoBehaviour {
 
+    public GameObject player;
+
     Vector3 Direction;
     float speed;
 
@@ -20,10 +22,11 @@ public class Projectile_Behaviour : MonoBehaviour {
     void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag == "Player") {
             Destroy(gameObject);
-            col.gameObject.GetComponent<Player_Movement>().GiveDamage(5f);
+            col.gameObject.GetComponent<Player_Movement>().GiveDamage(1);
 
         } else if (col.gameObject.tag == "Defense") {
             Destroy(gameObject);
+            player.GetComponent<Player_Movement>().PlayPing();
         } else {
             GameObject player = GameObject.Find("Player");
             Vector3 direction = player.transform.position - transform.position;
